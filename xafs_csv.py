@@ -33,7 +33,6 @@ class Xafscsv(QtCore.QObject):
 
     def __init__(self):
         super(Xafscsv, self).__init__()
-        # self.window = load_ui('xafs_csv.ui')
         self.window = load_ui(os.path.join(DIR_PATH, 'xafs_csv.ui'))
         self.window.installEventFilter(self)
 
