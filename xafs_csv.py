@@ -42,8 +42,10 @@ class Xafscsv(QtCore.QObject):
 
     def get_positions(self):
 
-        y2 = caget("OMS58:25002003")
-        theta = caget("OMS58:25002000")
+        y2_pv_string = self.window.y2_pv.text()
+        theta_pv_string = self.window.theta_pv.text()
+        y2 = caget(y2_pv_string)
+        theta = caget(theta_pv_string)
 
         self.window.dcm_y2.setValue(y2)
         self.window.dcm_theta.setValue(theta)
@@ -109,7 +111,7 @@ class Xafscsv(QtCore.QObject):
         path = QtWidgets.QFileDialog.getSaveFileName(None, 'Save File', directory, 'CSV(*.csv)')
 
         path = path[0]
-        header = "DCM_Energy;DCM_Y_2"
+        header = self.window.e0_name.text() + ";" + self.window.y2_name.text()
         if path == '':
             return
 
